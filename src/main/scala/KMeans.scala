@@ -10,7 +10,7 @@ import scala.util.Random
   * In practice, k-means creates k groups from a set of objects so that the members of a group are more similar.
   * It is a a simple unsupervised clustering algorithm designed to form groups such that the group members are more similar versus non-group members.
   * However, it is sensitive to outliers and the initial choice of centroids.
-  * Also, it is generally designed to operate on numeric continuous (ranged, e.g. height) data as opposed to numeric discrete data (specific, e.g. gender)
+  * Also, it is generally designed to operate on numeric continuous (ranged, e.g. height) data as opposed to categorical discrete data (specific, e.g. gender)
   * Thus, it may be used to group individual students based on features/attributes/variables such as height and shoe size that may help classify their gender.
   * The goal is to predict k centroids and a label for each data point.
   * NB: notice that the feature vectors of each data point do not have labels, explaining why it is unsupervised.
