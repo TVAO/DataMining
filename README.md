@@ -1,5 +1,7 @@
 **Predicting prices and trends in the virtual economy of World of Warcraft**
 
+NB: Primary contributions are Apriori and KMeans algorithm implementations by me (Thor).
+
 **The program has two dependencies that must be downloaded before running**
 
 	1) sbt (scala build tools) -> https://www.scala-sbt.org/download.html
