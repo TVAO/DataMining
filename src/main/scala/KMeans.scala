@@ -4,8 +4,6 @@ import scala.util.Random
 
 /**
   * Trait (interface) responsible for defining the unsupervised KMeans classification algorithm used to find groups of similar data from the [[Model.PreprocessedAuction]] data.
-  *
-  *
   * K-means groups similar data together and is used to search through the data and group together data that have similar attributes.
   * In practice, k-means creates k groups from a set of objects so that the members of a group are more similar.
   * It is a a simple unsupervised clustering algorithm designed to form groups such that the group members are more similar versus non-group members.
@@ -90,6 +88,7 @@ object KMeans {
       if (currentDistance < distIndexPair._1) (currentDistance, clusters.indexOf(cluster))
       else distIndexPair
     })
+   
     // Assign point to cluster based on index
     clusters.zipWithIndex.map { case (cluster:Cluster, index:Int) =>
       if (index == clusterIndex._2) cluster.copy(members = point :: cluster.members)
