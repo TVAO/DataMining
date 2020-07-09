@@ -54,8 +54,6 @@ sealed trait AuctionPreprocessor {
 
 /**
   * Implementation of [[AuctionPreprocessor]] responsible for preprocessing [[Auction]] data.
-  *
-  * @author Thor Olesen
   */
 object AuctionPreprocessor extends AuctionPreprocessor with SparkConfiguration {
 
@@ -102,6 +100,7 @@ object AuctionPreprocessor extends AuctionPreprocessor with SparkConfiguration {
     println(s"Found most volatile item: $mostVolatile")
     mostVolatile.as[VolatileAuction]
   }
+ 
   /**
     * Clean [[Auction]] data by filling in missing values, smoothing noisy data, removing outliers, and resolving inconsistencies.
     *
@@ -172,6 +171,7 @@ object AuctionPreprocessor extends AuctionPreprocessor with SparkConfiguration {
       bid = normalize(auc.bid, auc.minBid, auc.maxBid, auc.totalItemAuctions),
       buyout = normalize(auc.buyout, auc.minBuyout, auc.maxBuyout, auc.totalItemAuctions)
     ))
+   
     val mappedToPreprocessedAuctions =  normalized.map(auction => PreprocessedAuction(timestamp = auction.date.map(Timestamp.valueOf),
         date = auction.date.map(Timestamp.valueOf(_).toLocalDateTime.format(DateTimeFormatter.ofPattern("MM-dd"))),
         dayOfWeek = auction.date.map(Timestamp.valueOf(_).toLocalDateTime.getDayOfWeek.getValue),
@@ -270,9 +270,7 @@ object AuctionPreprocessor extends AuctionPreprocessor with SparkConfiguration {
         .foldLeft ((List[LabeledAuction](), predictionModel.first())) ((auctionsCurrentPairAcc, nextAuction) => {
           val (auctionsAcc, currentAuction) = auctionsCurrentPairAcc
           val priceMovement = PriceMovementLabel.getMovement(currentAuction.meanBuyout, nextAuction.meanBuyout)
-          val labelledAuction = currentAuction.copy(
-            priceMovementLabel = PriceMovementLabel.toString(priceMovement)
-          )
+          val labelledAuction = currentAuction.copy(priceMovementLabel = PriceMovementLabel.toString(priceMovement))
           val updatedNextAuction = nextAuction.copy(
             previousPriceMovementLabel = PriceMovementLabel.getNumericValueFromString(labelledAuction.priceMovementLabel)
           )
