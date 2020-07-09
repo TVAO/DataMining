@@ -29,7 +29,7 @@ sealed trait Apriori[A[_], L[_]] { // Higher kinded types used to create Array[L
 
 /**
   * Generic implementation of Apriori algorithm.
-  *
+  * @author Thor Olesen
   */
 object Apriori extends Apriori[Array, Array] {
 
