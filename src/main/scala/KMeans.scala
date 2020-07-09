@@ -23,6 +23,7 @@ sealed trait KMeans {
   * Implementation of K-means algorithm.
   * In this particular implementation, each point represents a feature vector with student attributes such as height and shoe size.
   * The KMeans algorithm is used to predict the gender of students from the survey based on their shoe size (x) and height (y).
+  * @author Thor Olesen
   */
 object KMeans {
 
